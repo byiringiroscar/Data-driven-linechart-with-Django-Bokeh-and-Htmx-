@@ -12,6 +12,7 @@
                 <select
                  name="country"
                  id="select-year"
+                 class="custom-select"
                  autocomplete="off">
                     {% for c in countries %}
                         <option value="{{ c }}" {% if country == c %} selected {% endif %}>{{ c }}</option>

@@ -59,9 +59,31 @@ def line(request):
 
     country = request.GET.get('country', 'Germany')
 
+
+    gdps = GDP.objects.filter(country=country).order_by('year')
+
+
+    country_years  = [d.year for d in gdps]
+    country_gdps = [d.gdp for d in gdps]
+
+
+    cds = ColumnDataSource(data=dict(country_years=country_years, country_gdps=country_gdps))
+
+    fig = figure(height=500, title=f'{country} GDP')
+    fig.title.align = 'center'
+    fig.title.text_font_size = '1.5rem'
+    fig.yaxis[0].formatter = NumeralTickFormatter(format='$0.0a')
+
+    fig.line(source=cds, x='country_years', y='country_gdps', line_width=2)
+
+    script, div = components(fig)
+
+
     context = {
         'countries': countries,
-        'country': country
+        'country': country,
+        'script': script,
+        'div': div
     }
 
-    return render(request, 'index.html', context)
+    return render(request, 'line.html', context)
