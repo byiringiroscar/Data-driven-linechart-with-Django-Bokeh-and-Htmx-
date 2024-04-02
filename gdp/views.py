@@ -130,7 +130,7 @@ def multi_line(request):
                         line_width=2,
                         legend_group='names'
                         )
-
+    fig.legend.location = 'top_left'
     script, div = components(fig)
 
     
