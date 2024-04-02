@@ -113,16 +113,26 @@ def multi_line(request):
     country_gdps = [d.gdp for d in gdps]
 
 
-    cds = ColumnDataSource(data=dict(country_years=year_data, country_gdps=gdp_data))
+    cds = ColumnDataSource(data=dict(
+        country_years=year_data, 
+        country_gdps=gdp_data,
+        names=c
+        ))
 
     fig = figure(height=500, title=f'{country} GDP')
     fig.title.align = 'center'
     fig.title.text_font_size = '1.5rem'
     fig.yaxis[0].formatter = NumeralTickFormatter(format='$0.0a')
 
-    fig.multi_line(source=cds, xs='country_years', ys='country_gdps', line_width=2)
+    fig.multi_line(source=cds,
+                    xs='country_years',
+                      ys='country_gdps',
+                        line_width=2,
+                        legend_group='names'
+                        )
 
     script, div = components(fig)
+
     
     context = {
         'countries': countries,
