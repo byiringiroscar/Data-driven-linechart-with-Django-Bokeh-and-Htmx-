@@ -77,13 +77,14 @@ def line(request):
     fig.line(source=cds, x='country_years', y='country_gdps', line_width=2)
 
     script, div = components(fig)
-
-
+    
     context = {
         'countries': countries,
         'country': country,
         'script': script,
         'div': div
     }
+    if request.htmx:
+        return render(request, 'partials/gdp-bar.html', context)
 
     return render(request, 'line.html', context)

@@ -13,7 +13,10 @@
                  name="country"
                  id="select-year"
                  class="custom-select"
-                 autocomplete="off">
+                 autocomplete="off"
+                 hx-get="{% url 'linechart' %}"
+                 hx-target="#linechart"
+                 >
                     {% for c in countries %}
                         <option value="{{ c }}" {% if country == c %} selected {% endif %}>{{ c }}</option>
                     {% endfor %}
