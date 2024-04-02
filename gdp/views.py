@@ -52,3 +52,16 @@ def index(request):
         return render(request, 'partials/gdp-bar.html', context)
 
     return render(request, 'index.html', context)
+
+
+def line(request):
+    countries = GDP.objects.values_list('country', flat=True).distinct()
+
+    country = request.GET.get('country', 'Germany')
+
+    context = {
+        'countries': countries,
+        'country': country
+    }
+
+    return render(request, 'index.html', context)

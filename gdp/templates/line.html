@@ -13,8 +13,8 @@
                  name="country"
                  id="select-year"
                  autocomplete="off">
-                    {% for year in years %}
-                        <option value="{{ year }}" {% if year_selected == year %} selected {% endif %}>{{ year }}</option>
+                    {% for c in countries %}
+                        <option value="{{ c }}" {% if country == c %} selected {% endif %}>{{ c }}</option>
                     {% endfor %}
                 </select>
         </div>
