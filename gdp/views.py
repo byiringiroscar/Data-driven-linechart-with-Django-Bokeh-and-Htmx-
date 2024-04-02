@@ -116,7 +116,8 @@ def multi_line(request):
     cds = ColumnDataSource(data=dict(
         country_years=year_data, 
         country_gdps=gdp_data,
-        names=c
+        names=c,
+        colors=['red', 'blue', 'green']
         ))
 
     fig = figure(height=500, title=f'{country} GDP')
@@ -128,7 +129,8 @@ def multi_line(request):
                     xs='country_years',
                       ys='country_gdps',
                         line_width=2,
-                        legend_group='names'
+                        legend_group='names',
+                        line_color='colors'
                         )
     fig.legend.location = 'top_left'
     script, div = components(fig)
